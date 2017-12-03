@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+TimeLine | Prontuário Médico
+{% endblock title %}
+
+
+{% block principal %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container">
+                <div class="page-header">
+                    <h1 id="">Timeline</h1>
+                </div>
+                <div id="timeline">
+                    <div class="row timeline-movement">
+                        <div class="col-sm-6  timeline-item">
+                        </div>
+
+                        <div class="col-sm-6  timeline-item">
+                            <div class="row">
+                                <div class="col-sm-11">
+                                    <div class="timeline-panel credits">
+                                        <ul class="timeline-panel-ul">
+                                            <li><span class="importo"> <h3>Atendimento</h3></span></li>
+                                            {% for dado in dados %}
+                                            <h4 style="color: red;">Queixa</h4>
+                                            <li><span class="causale">{{dado.queixa_p}}</span></li>
+
+                                            <h4 style="color: red">Histórico</h4>
+                                            <li><span class="causale">{{dado.Hist}}</span> </li>
+
+                                            <h4 style="color: red">Problemas Renais</h4>
+                                            <li><span class="causale">{{dado.prb_renal}}</span> </li>
+
+                                            <h4 style="color: red">Problemas Articulares</h4>
+                                            <li><span class="causale">{{dado.prb_articular}}</span> </li>
+
+                                            <h4 style="color: red">Problemas Cardíacos</h4>
+                                            <li><span class="causale">{{dado.prb_card}}</span> </li>
+
+                                            <h4 style="color: red">Problemas Respiratórios</h4>
+                                            <li><span class="causale">{{dado.prb_resp}}</span> </li>
+
+                                            <h4 style="color: red">Problemas Gástricos</h4>
+                                            <li><span class="causale">{{dado.prb_gast}}</span> </li>
+
+                                            <h4 style="color: red">Alergias</h4>
+                                            <li><span class="causale">{{dado.alergias}}</span> </li>
+                                            <hr>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <!--due -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block foot %}
+
+        {% endblock foot %}
+        {% endblock %}

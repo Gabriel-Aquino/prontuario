@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+    {% block title %}    
+        Editar Médico | Prontuário Médico
+    {% endblock title %}
+
+
+{% block principal %}
+<div class="main">
+        <h1 class="cadmed">Editar dados do Médico</h1>
+        {% if erros %}
+        <div class="row">
+            <div class="col-sm-4">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <i class="fa fa-times-circle"></i> Preencha os campos destacados!
+                        </div>
+            </div>
+        </div>
+        
+        {% endif %}
+        <div class="main-content cadmed">
+                <form action="/editar/medico?crm={{dados.CRM}}&feedback" method="POST">
+                   <input type="hidden" value="{{get}}" name="crmget">
+                   <label>Nome Completo<br><input id="nome" value="{{dados.Nome_med}}" name="nome" type="text" class="form-control" placeholder="Nome" required></label>
+                   <label>CPF<br><input id="cpf" name="cpf" value="{{dados.CPF}}" type="text" class="form-control" placeholder="CPF"></label>
+                   <label>CRM<br><input id="crm" value="{{dados.CRM}}" name="crm" type="text" class="form-control" ></label>
+                   <label>RG<br><input id="rg" name="rg" value="{{dados.RG}}" type="text" class="form-control" required></label>
+                   <label><br>Endereço<br><input id="end" value="{{dados.Endereco}}" name="end" type="text" class="form-control" placeholder="Rua e Número"></label>
+                   <label>Bairro<br><input id="bairro" value="{{dados.Bairro}}" name="bairro" type="text" class="form-control"></label>
+
+                   <!--label>Cidade<br><input id="cidade" value="{{dados.Cidade}}" name="cidade" type="text" class="form-control"></label-->
+                   <label>Cidade<br><select id="cidade" name="cidade" class="form-control">
+                        <option>{{dados.Cidade}}</option>
+                        {% for city in cidade %}
+                        <option value="{{city.Nome}}">{{city.Nome}}</option>
+                        {% endfor %}
+                    </select></label>
+
+                   <!--label>Estado<br><input id="estado" value="{{dados.Estado}}" name="estado" type="text" class="form-control"></label-->
+                    <label>Estado<br><select id="estado" name="estado" class="form-control">
+                        <option>{{dados.Estado}}</option>
+                        {% for est in estado %}
+                        <option value="{{est.Nome}}">{{est.Nome}}</option>
+                        {% endfor %}
+                    </select></label>
+                    
+                   <label><br>CEP<br><input id="cep" value="{{dados.CEP}}" name="cep" type="text" class="form-control"></label>
+                   <label>Complemento<br><input id="comp" value="{{dados.Complemento}}" name="comp" type="text" class="form-control"></label>
+                   <label>Data de Nascimento<br><input id="dtn" value="{{dados.DT_NASCIMENTO}}" name="dtn" type="text" class="form-control" placeholder="dd/mm/yyyy" required></label>
+                   <label>Naturalidade<br><input id="natura" value="{{dados.Naturalidade}}" name="natura" type="text" class="form-control"></label>
+                   <label><br>Nacionalidade<br><input id="nacio" value="{{dados.Nacionalidade}}" name="nacio" type="text" class="form-control" placeholder="País"></label>
+                   <label>E-mail<br><input id="email" value="{{dados.Email}}" name="email" type="email" class="form-control" placeholder="example@example.com" required></label>
+                   <label>Celular<br><input id="cell" value="{{dados.Celular}}" name="cell" type="tel" class="form-control"></label>
+                   <label>Telefone<br><input id="tel" value="{{dados.Telefone}}" name="tel" type="tel" class="form-control" required></label>
+                   <label><br>Trabalho<br><input id="trab" value="{{dados.Trabalho}}" name="trab" type="text" class="form-control"></label>
+                   <!--label>Especialidade<br><input id="esp" value="{{dados.Especialidades}}" name="esp" type="text" class="form-control"></label-->
+                   <label>Especialidades<br><select id="esp" name="esp" class="form-control">
+                        <option>{{dados.Especialidades}}</option>
+                        {% for esp in especialidades %}
+                        <option value="{{esp.nome}}">{{esp.nome}}</option>
+                        {% endfor %}
+                </select></label>
+                
+                    <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a></td>
+                    <button class=" btn btn-danger btncad" type="reset">Limpar</button></td>
+                </form>
+            </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+

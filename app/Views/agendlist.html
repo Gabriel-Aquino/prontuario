@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+Agendamentos | Prontuário Médico
+{% endblock title %}
+
+
+{% block principal %}
+<div class="main">
+    <h1 class="cadmed">Agendamentos<a href="/agendar?feedback"><button class="btn btn-success" style="margin-right: 2%; float: right"><i class="fa fa-user-plus" aria-hidden="true"></i></button></a></h1>
+
+    <div class="main-content cadmed">
+        {% if feedback == 'ok' %}
+        <div class="row cadmed">
+            <div class="col-sm-4">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <i class="fa fa-check-circle"></i> Agendamento editado com sucesso!
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Médico</th>
+                <th>Paciente</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Deletar</th>
+                <th>Alterar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for agend in dados %}
+            {% for med in medico %}
+            {% for pac in paciente %}
+                {% if med.CRM == agend.Medico_agend %}
+                {% if pac.CPF == agend.Paciente_agend %}
+            <tr>
+                <td>{{agend.Cod}}</td>
+                <td>{{med.Nome_med}}</td>
+                <td>{{pac.Nome_pac}}</td>
+                <td>{{agend.Data_agend}}</td>
+                <td>{{agend.Hora_agend}}</td>
+                <td><a href="/excluir/agendamento?cod={{agend.Cod}}"><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a></td>
+                <td><a href="/editar/agendamento?cod={{agend.Cod}}&feedback"><button class="btn btn-primary"><i class="lnr lnr-pencil"></i></button></a></td>
+            </tr>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+           {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

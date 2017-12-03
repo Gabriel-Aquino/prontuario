@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+    {% block head %}
+    {{ parent() }}
+    {% endblock %}
+        {% block title %}    
+            Cadastrar Médico | Prontuário Médico
+        {% endblock title %}
+
+    {% block principal %}
+    <div class="main">
+            <h1 class="cadmed">Cadastrar Médico</h1>
+            {% if feedback == 'ok' %}
+            <div class="row">
+                <div class="col-sm-4">
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <i class="fa fa-check-circle"></i> Médico Cadastrado!
+                            </div>
+                </div>
+            </div>
+                {% endif %}
+                {% if erros %}
+                <div class="row">
+                    <div class="col-sm-4">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <i class="fa fa-times-circle"></i> Preencha os campos destacados!
+                                </div>
+                    </div>
+                </div>
+                {% endif %}
+            <div class="main-content cadmed">
+                    <form action="/cadastro_medico?feedback" method="POST">
+                       <label {% if erros.nome %} style="color: red" {% endif %}>Nome Completo<br><input id="nome" name="nome" type="text" class="form-control" placeholder="Nome"></label>
+                       
+                       <label>CPF<br><input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF"></label>
+                       
+                       <label {% if erros.crm %} style="color: red" {% endif %}>CRM<br><input id="crm" name="crm" type="text" class="form-control" ></label>
+                       
+                       <label {% if erros.rg %} style="color: red" {% endif %}>RG<br><input id="rg" name="rg" type="text" class="form-control" ></label>
+                      <label><br>Endereço<br><input id="end" name="end" type="text" class="form-control" placeholder="Rua e Número"></label>
+                       <label>Bairro<br><input id="bairro" name="bairro" type="text" class="form-control"></label>
+
+                       <label>Cidade<br><select id="estado" name="estado" class="form-control">
+                            <option value="Selecione">Selecione...</option>
+                            {% for city in cidade %}
+                            <option value="{{city.Nome}}">{{city.Nome}}</option>
+                            {% endfor %}
+                    </select></label>
+
+                       <label>Estado<br><select id="estado" name="estado" class="form-control">
+                        <option value="Selecione">Selecione...</option>
+                        {% for est in estado %}
+                        <option value="{{est.Nome}}">{{est.Nome}}</option>
+                        {% endfor %}
+                </select></label>
+
+                       <label><br>CEP<br><input id="cep" name="cep" type="text" class="form-control"></label>
+                       <label>Complemento<br><input id="comp" name="comp" type="text" class="form-control"></label>
+                       <label {% if erros.dtn %} style="color: red" {% endif %}>Data de Nascimento<br><input id="dtn" name="dtn" type="text" class="form-control" placeholder="dd/mm/yyyy"></label>
+                       <label>Naturalidade<br><input id="natura" name="natura" type="text" class="form-control"></label>
+                       <label><br>Nacionalidade<br><input id="nacio" name="nacio" type="text" class="form-control" placeholder="País"></label>
+                       <label {% if erros.email %} style="color: red" {% endif %}>E-mail<br><input id="email" name="email" type="email" class="form-control" placeholder="example@example.com"></label>
+                       <label>Celular<br><input id="cell" name="cell" type="tel" class="form-control"></label>
+                       <label {% if erros.tel %} style="color: red" {% endif %}>Telefone<br><input id="tel" name="tel" type="tel" class="form-control" ></label>
+                      <label><br>Trabalho<br><input id="trab" name="trab" type="text" class="form-control"></label>
+                       <label>Especialidades<br><select id="esp" name="esp" class="form-control">
+                                <option value="Selecione">Selecione...</option>
+                                {% for esp in especialidades %}
+                                <option value="{{esp.nome}}">{{esp.nome}}</option>
+                                {% endfor %}
+                        </select></label>
+                                    </tr>
+                    </table>
+                        <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a>
+                        <button class=" btn btn-danger btncad" type="reset">Limpar</button>
+                    </form>
+                </div>
+        </div>
+    
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+Agendamentos | Prontuário Médico
+{% endblock title %}
+
+
+{% block principal %}
+<div class="main">
+    <h1 class="cadmed">Agendamentos</h1>
+    <div class="main-content cadmed">
+        {% if feedback == 'ok' %}
+        <div class="row cadmed">
+            <div class="col-sm-4">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <i class="fa fa-check-circle"></i> Agendamento editado com sucesso!
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Médico</th>
+                <th>Paciente</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>TimeLine</th>
+                <th>Atender</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for agend in agendamento %}
+            {% for med in medico %}
+            {% for pac in paciente %}
+            {% if med.CRM == agend.Medico_agend %}
+            {% if pac.CPF == agend.Paciente_agend %}
+            <tr>
+                <td>{{agend.Cod}}</td>
+                <td>{{med.Nome_med}}</td>
+                <td>{{pac.Nome_pac}}</td>
+                <td>{{agend.Data_agend}}</td>
+                <td>{{agend.Hora_agend}}</td>
+                <td><a href="/timeline?paciente={{agend.Paciente_agend}}"><button type="button" class="btn btn-primary"><i class="lnr lnr-heart"> TimeLine</i></button></a></td>
+                <td><a href="/atender?cod={{agend.Cod}}&feedback"><button type="button" class="btn btn-primary"><i class="lnr lnr-heart">Atender</i></button></a></td>
+            </tr>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

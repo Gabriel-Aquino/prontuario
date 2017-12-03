@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <title>Atestado</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="/vendor/chartist/css/chartist-custom.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="/css/demo.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="#">
+    <link rel="icon" type="image/png" sizes="96x96" href="#">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/meucss.css">
+</head>
+
+<body>
+<div class="main">
+    <h1 class="cadmed">Atestado</h1>
+    <div class="main-content cadmed">
+        <form action="/atestado" method="POST">
+            <label>
+                Atestado Médico (0/200 caracteres)<br><textarea name="texto" rows="4" cols="60"></textarea>
+            </label>
+            <input type="hidden" name="codigo" value="{{user.codigo}}">
+            <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a></td>
+            <button class=" btn btn-danger btncad" type="reset">Limpar</button></td>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</body>
+
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="/vendor/chartist/js/chartist.min.js"></script>
+<script src="/scripts/klorofil-common.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<!--script>
+    $(document).ready(function(){
+
+        var $data = $("#data");
+        $data.mask('00/00/0000', {reverse: false});
+
+        var $hora = $("#hora");
+        $hora.mask('00:00:00', {reverse: false});
+
+        var $alt = $("#alt");
+        $alt.mask('000 cm', {reverse: false});
+
+        var $peso = $("#peso");
+        $peso.mask('000', {reverse: false});
+
+        var $imc = $("#imc");
+        $imc.mask('00,0', {reverse: false});
+
+        var $temp = $("#temp");
+        $temp.mask('00 Cº', {reverse: false});
+    });
+
+</script-->
+
+</html>

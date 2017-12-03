@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+	{% block head %}
+	<title>{% block title %} Inicio | Prontuário Medico {% endblock %}</title>
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<!-- VENDOR CSS -->
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/vendor/linearicons/style.css">
+	<link rel="stylesheet" href="/vendor/chartist/css/chartist-custom.css">
+	<!-- MAIN CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+	<link rel="stylesheet" href="/css/demo.css">
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+	<!-- ICONS -->
+	<link rel="apple-touch-icon" sizes="76x76" href="#">
+	<link rel="icon" type="image/png" sizes="96x96" href="#">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/meucss.css">
+	<!--link media="all" type="text/css" rel="stylesheet" href="https://bootsnipp.com/css/fullscreen.css"-->
+	{% endblock %}
+</head>
+
+<body>
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+				<a href="/">LOGO</a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+				<form class="navbar-form navbar-left">
+
+				</form>
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="" class="dropdown-toggle" data-toggle="dropdown"><img src="" class="img-circle" alt=""> <span>{{user.login}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<!--li><a href="#"><i class="lnr lnr-user"></i> <span>Meu Perfil</span></a></li>
+								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li-->
+								<li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		{% block sid %}
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+						<li><a href="/" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						{% if user.resultado == true %}
+						<li>
+								<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Cadastrar</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+								<div id="subPages" class="collapse ">
+									<ul class="nav">
+										<li><a href="/cadastro_medico?feedback" class="">Médico</a></li>
+										<li><a href="/cadastro_paciente?feedback" class="">Pacientes</a></li>
+									</ul>
+								</div>
+							</li>
+						<!--li><a href="#" class=""><i class="lnr lnr-inbox"></i> <span>Consultas</span></a></li>
+						<li><a href="/agendados/medico?feedback" class=""><i class="lnr lnr-heart"></i> <span>Atendimento</span></a></li-->
+						<li><a href="/agendamento?feedback" class=""><i class="lnr lnr-pencil"></i> <span>Agendamento</span></a></li>
+						<li><a href="/pacientes?feedback" class=""><i class="lnr lnr-inbox"></i> <span>Pacientes</span></a></li>
+						<li><a href="/medicos?feedback" class=""><i class="lnr lnr-inbox"></i> <span>Médicos</span></a></li>
+						{% endif %}
+						{% if user.resultadoMed %}
+						<li><a href="/agendados/medico?feedback" class=""><i class="lnr lnr-pencil"></i> <span>Agendados</span></a></li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+		</div>
+		{% endblock %}
+		
+		<!-- END LEFT SIDEBAR -->
+		{% block principal %}
+        <div class="main">
+            <div class="main-content">
+
+            </div>
+        </div>
+		{% endblock %}
+		{% block foot %}
+		<footer>
+				<div class="container-fluid">
+					<p class="copyright">&copy; 2017 Prontuário Médico. Todos os Direitos Reservados.</p>
+				</div>
+			</footer>
+		{% endblock foot %}
+		
+	</div>
+	<!-- Javascript -->
+	<script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script>
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="/vendor/chartist/js/chartist.min.js"></script>
+	<script src="/scripts/klorofil-common.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-34731274-1']);
+		_gaq.push(['_trackPageview']);
+		_gaq.push(['_trackEvent', 'sharing', 'viewed full-screen', 'snippet a6WQy',0,true]);
+		(function() {
+		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+		</script>
+		<script type="text/javascript">
+		(function($) { 
+			$('#theme_chooser').change(function(){
+				whichCSS = $(this).val();
+				document.getElementById('snippet-preview').contentWindow.changeCSS(whichCSS);
+			});
+		})(jQuery);
+		</script>
+	<script>
+            $(document).ready(function(){
+                var $CPF = $("#cpf");
+				$CPF.mask('000.000.000-00', {reverse: false});
+				
+				var $cell = $("#cell");
+				$cell.mask('(00) 00000-0000', {reverse: false});
+				
+				var $tel = $("#tel");
+				$tel.mask('(00) 0000-0000', {reverse: false});
+
+				var $cep = $("#cep");
+				$cep.mask('00000-000', {reverse: false});
+
+				var $dtn = $("#dtn");
+				$dtn.mask('00/00/0000', {reverse: false});
+
+                var $data = $("#data");
+                $data.mask('00/00/0000', {reverse: false});
+
+                var $hora = $("#hora");
+                $hora.mask('00:00:00', {reverse: false});
+            });
+    
+        </script>
+    
+</body>
+
+</html>

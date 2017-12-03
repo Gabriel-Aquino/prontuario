@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+Atendimento | Prontuário Médico
+{% endblock title %}
+
+
+{% block principal %}
+<div class="main">
+    <h1 class="cadmed">Atendimento</h1>
+    <div class="main-content">
+    {% if erros %}
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <i class="fa fa-times-circle"></i> Preencha os campos destacados!
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+    <div class="row cadmed">
+        <div class="col-sm-2">
+            <a href="" onclick="popUp({{get}})"><button class="btn btn-primary">
+                <i class="fa fa-plus-square"></i> SINAIS VITAIS</button></a>
+        </div>
+        <div class="col-sm-2">
+            <a href="" onclick="popUp1()"><button class="btn btn-primary">
+                <i class="fa fa-info-circle"></i> HIPÓTESE</button></a>
+        </div>
+
+        <div class="col-sm-2">
+            <a href="" onclick="popUp2()"><button class="btn btn-primary">
+                <i class="fa fa-plus"></i> PRESCRIÇÃO</button></a>
+        </div>
+
+        <div class="col-sm-2">
+            <a href="" onclick="popUp3()"><button class="btn btn-primary">
+                <i class="fa fa-level-up"></i> EVOLUÇÃO</button></a>
+        </div>
+
+        <div class="col-sm-2">
+            <a href="" onclick="popUp4()"><button class="btn btn-primary">
+                <i class="fa fa-heart"></i> ATESTADO</button></a>
+        </div>
+
+    </div>
+        <hr>
+    <div class="main-content cadmed">
+
+        <form action="/atender?feedback" method="POST">
+            <div class="row">
+                <input type="hidden" value="{{get}}" name="agendamento">
+                <div class="col-sm-3">
+                <label>Problemas Renais <input class="form-control" name="renal" id="renal"></label>
+                <br>
+                </div>
+                <div class="col-sm-3">
+                <label>Problemas Articulares <input class="form-control" name="art" id="art"></label>
+               <br>
+                </div>
+                <div class="col-sm-3">
+                <label>Problemas Cardíacos <input class="form-control" name="card" id="card"></label>
+                <br>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label>Problemas Respiratórios <input class="form-control" name="resp" id="resp"></label>
+                    <br>
+                </div>
+                <div class="col-sm-3">
+                <label>Problemas Gástricos <input class="form-control" name="gast" id="gast"></label>
+                <br>
+                </div>
+                <div class="col-sm-3">
+                <label>Alergias <input class="form-control" name="alergia" id="alergia"></label>
+                <br>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="row">
+                <div class="col-sm-2">
+                    <label>Hepatite <input type="checkbox" name="hep" id="hep" value="1"></label>
+                    <br>
+                </div>
+                <div class="col-sm-2">
+                    <label>Gravidez <input type="checkbox" name="grav" id="grav" value="1"></label>
+                    <br>
+                </div>
+                <div class="col-sm-2">
+                <label>Diabetes <input type="checkbox" name="dia" id="dia" value="1"></label>
+                <br>
+                </div>
+                <div class="col-sm-3">
+                <label>Problemas de Cicatrização <input type="checkbox" name="cic" id="cic" value="1"></label>
+                <br>
+                </div>
+                <div class="col-sm-3">
+                <label>Utiliza Medicamentos <input type="checkbox" name="medc" id="medc" value="1"></label>
+                <br>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Queixa Principal (0/100 caracteres)<br>
+            <textarea name="queixa" id="queixa" cols="45" rows="4" maxlength="100"></textarea></label>
+                </div>
+                <div class="col-sm-6">
+                    <label>Histórico (0/500 caracteres)<br>
+                    <textarea name="hist" id="hist" cols="50" rows="4" maxlength="500"></textarea></label>
+                </div>
+            </div>
+
+            <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a></td>
+            <button class=" btn btn-danger btncad" type="reset">Limpar</button></td>
+        </form>
+    </div>
+    </div>
+</div>
+
+<script>
+    function popUp(){
+        window.open('/sinais?feedback',
+            'Titulo da Janela', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO,' +
+            'DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=800, HEIGHT=600');
+    }
+    function popUp1(){
+        window.open('/hipotese?feedback',
+            'Titulo da Janela', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO,' +
+            'DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=600');
+
+    }
+
+    function popUp2(){
+        window.open('/prescricao?feedback',
+            'Titulo da Janela', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO,' +
+            'DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=600');
+
+    }
+    function popUp3(){
+        window.open('/evolucao?feedback',
+            'Titulo da Janela', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO,' +
+            'DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=600');
+
+    }
+    function popUp4(){
+        window.open('/atestado?feedback',
+            'Titulo da Janela', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO,' +
+            'DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=600, HEIGHT=600');
+
+    }
+
+</script>
+{% endblock %}

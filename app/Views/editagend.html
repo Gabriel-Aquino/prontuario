@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+Editar Agendamento | Prontuário Médico
+{% endblock title %}
+
+
+{% block principal %}
+<div class="main">
+    <h1 class="cadmed">Editar Agendamento</h1>
+    {% if erros %}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <i class="fa fa-times-circle"></i> Preencha os campos destacados!
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+    <div class="main-content cadmed">
+        <form action="/editar/agendamento?cod={{dados.Cod}}&feedback" method="POST">
+            <input type="hidden" value="{{get}}" name="crmget">
+            <input type="hidden" value="{{dados.Cod}}" name="cod" id="cod">
+
+            <label>Paciente<br>
+                <select class="form-control" id="paciente" name="paciente">
+                    {% for pac in paciente %}
+                        {% if dados.Paciente_agend == pac.CPF %}
+                             <option selected value="{{pac.CPF}}">{{pac.Nome_pac}}</option>
+                        {% endif %}
+                             <option value="{{pac.CPF}}">{{pac.Nome_pac}}</option>
+                    {% endfor %}
+                </select></label>
+
+            <label>Medico<br>
+                <select class="form-control" id="medico" name="medico">
+                    {% for med in medico %}
+                        {% if dados.Medico_agend == med.CRM %}
+                    <option selected value="{{med.CRM}}">{{med.Nome_med}}</option>
+                        {% endif %}
+                    <option value="{{med.CRM}}">{{med.Nome_med}}</option>
+            {% endfor %}
+            </select></label>
+
+            <label>Data<br><input id="data" value="{{dados.Data_agend}}" name="data" type="text" class="form-control" ></label>
+
+            <label>Hora<br><input id="hora" value="{{dados.Hora_agend}}" name="hora" type="text" class="form-control" ></label>
+
+            <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a></td>
+            <button class=" btn btn-danger btncad" type="reset">Limpar</button></td>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block title %}
+Agendamento | Prontuário Médico
+{% endblock title %}
+
+{% block principal %}
+
+<div class="main">
+    <h1 class="cadmed">Agendar Consulta</h1>
+    {% if feedback == 'ok' %}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <i class="fa fa-check-circle"></i> Consulta Agendada!
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="main-content cadmed">
+        <form action="/agendar?feedback" method="POST">
+            <label>Paciente<br><select id="paciente" name="paciente" class="form-control">
+                <option>Selecione...<!--{{paciente.Nome_pac}}--></option>
+                {% for pac in paciente %}
+                <option value="{{pac.CPF}}">{{pac.Nome_pac}}</option>
+                {% endfor %}
+            </select></label>
+
+            <label>Médico<br><select id="medico" name="medico" class="form-control">
+                <option>Selecione...<!--{{medico.Nome_med}}--></option>
+                {% for med in medico %}
+                <option value="{{med.CRM}}">{{med.Nome_med}}</option>
+                {% endfor %}
+            </select></label>
+
+            <label>Data<br><input id="data" name="data" type="text" class="form-control" ></label>
+
+            <label>Hora<br><input id="hora" name="hora" type="text" class="form-control" ></label>
+
+            <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a>
+            <button class=" btn btn-danger btncad" type="reset">Limpar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

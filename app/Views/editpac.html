@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+    {% block title %}    
+        Cadastrar Paciente | Prontuário Médico
+    {% endblock title %}
+
+{% block principal %}
+<div class="main">
+        <h1 class="cadmed">Editar Paciente</h1>
+            {% if erros %}
+            <div class="row">
+                <div class="col-sm-4">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <i class="fa fa-times-circle"></i> Preencha os campos destacados!
+                            </div>
+                </div>
+            </div>
+            {% endif %}
+        <div class="main-content cadmed">
+                <form action="/editar/paciente?cpf={{paciente.CPF}}&feedback" method="POST">
+                    <input type="hidden" value="{{get}}" name="crmget">
+                   <label {% if erros.nome %} style="color: red" {% endif %}>Nome Completo<br><input value="{{dados.Nome_pac}}" id="nome" name="nome" type="text" class="form-control" placeholder="Nome"></label>
+                   <label {% if erros.rg %} style="color: red" {% endif %}>CPF<br><input value="{{dados.CPF}}" id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF"></label>                   
+                   <label {% if erros.rg %} style="color: red" {% endif %}>RG<br><input value="{{dados.RG_pac}}" id="rg" name="rg" type="text" class="form-control" ></label>
+                  <label><br>Endereço<br><input value="{{dados.Endereco_pac}}" id="end" name="end" type="text" class="form-control" placeholder="Rua e Número"></label>
+                   <label>Bairro<br><input value="{{dados.Bairro_pac}}" id="bairro" name="bairro" type="text" class="form-control"></label>
+
+                   <label>Cidade<br><select id="cidade" name="cidade" class="form-control">
+                        <option >{{dados.Cidade_pac}}</option>
+                        {% for city in cidade %}
+                        <option value="{{city.Nome}}">{{city.Nome}}</option>
+                        {% endfor %}
+                </select></label>
+
+                   <label>Estado<br><select id="estado" name="estado" class="form-control">
+                    <option>{{dados.Estado_pac}}</option>
+                    {% for est in estado %}
+                    <option value="{{est.Nome}}">{{est.Nome}}</option>
+                    {% endfor %}
+            </select></label>
+
+                   <label><br>CEP<br><input value="{{dados.CEP_pac}}" id="cep" name="cep" type="text" class="form-control"></label>
+                   <label>Complemento<br><input value="{{dados.Complemento_pac}}" id="comp" name="comp" type="text" class="form-control"></label>
+                   <label {% if erros.dtn %} style="color: red" {% endif %}>Data de Nascimento<br><input value="{{dados.DT_nasc_pac}}" id="dtn" name="dtn" type="text" class="form-control" placeholder="dd/mm/yyyy"></label>
+                   <label>Naturalidade<br><input value="{{dados.Naturalidade_pac}}" id="natura" name="natura" type="text" class="form-control"></label>
+                   <label><br>Nacionalidade<br><input value="{{dados.Nacionalidade_pac}}" id="nacio" name="nacio" type="text" class="form-control" placeholder="País"></label>
+                   <label {% if erros.email %} style="color: red" {% endif %}>E-mail<br><input value="{{dados.Email_pac}}" id="email" name="email" type="email" class="form-control" placeholder="example@example.com"></label>
+                   <label>Celular<br><input value="{{dados.Tel_cel}}" id="cell" name="cell" type="tel" class="form-control"></label>
+                   <label>Telefone<br><input value="{{dados.Tel_trab}}" id="tel" name="tel" type="tel" class="form-control" ></label>
+                    <label>Nome do Pai<input value="{{dados.Nome_pai}}" id="nomepai" name="nomepai" type="text" class="form-control"></label>
+                    <label>Nome da Mãe<input value="{{dados.Nome_mae}}" id="nomemae" name="nomemae" type="text" class="form-control"></label>
+                    <label>Tipo Sanguíneo<br><select id="tiposanguineo" name="tiposanguineo" class="form-control">
+                        <option>{{dados.Tipo_sangue}}</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select></label>
+                    <br><br><button class="btn btn-success btncad" type="submit">Salvar</button></a>
+                    <button class=" btn btn-danger btncad" type="reset">Limpar</button>
+                </form>
+            </div>
+    </div>
+
+{% endblock %}

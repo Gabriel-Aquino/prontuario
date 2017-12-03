@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+    {% block title %}    
+        Médicos Cadastrados | Prontuário Médico
+    {% endblock title %}
+
+
+{% block principal %}
+<div class="main">
+        <h1 class="cadmed">Médicos Cadastrados <a href="/cadastro_medico?feedback"><button class="btn btn-success" style="margin-right: 2%; float: right"><i class="fa fa-user-plus" aria-hidden="true"></i></button></a></h1>
+        
+        <div class="main-content cadmed">
+                {% if feedback == 'ok' %}
+                <div class="row cadmed">
+                    <div class="col-sm-4">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <i class="fa fa-check-circle"></i> Médico editado com sucesso!
+                                </div>
+                    </div>
+                </div>
+                
+                    {% endif %}
+            <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>CRM</th>
+                            <th>Nome Completo</th>
+                            <th>CPF</th>
+                            <th>RG</th>
+                            <th>E-mail</th>
+                            <th>Celular</th>
+                            <th>Telefone</th>
+                            <th>Deletar</th>
+                            <th>Alterar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for medico in dados %}
+                                <tr>
+                                    <td>{{medico.CRM}}</td>
+                                    <td>{{medico.Nome_med}}</td>
+                                    <td>{{medico.CPF}}</td>
+                                    <td>{{medico.RG}}</td>
+                                    <td>{{medico.Email}}</td>
+                                    <td>{{medico.Celular}}</td>
+                                    <td>{{medico.Telefone}}</td>
+                                    <td><a href="/excluir/medicos?crm={{medico.CRM}}"><button class="btn btn-danger"><i class="fa fa-trash-o"></i></button></a></td>
+                                    <td><a href="/editar/medico?crm={{medico.CRM}}&feedback"><button class="btn btn-primary"><i class="lnr lnr-pencil"></i></button></a></td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div>
+
+{% endblock %}
